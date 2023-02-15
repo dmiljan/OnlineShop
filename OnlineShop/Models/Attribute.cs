@@ -9,8 +9,6 @@ namespace OnlineShop.Models
         [Required]
         public string Name { get; set; }
         [Required]
-        public string Key { get; set; }
-        [Required]
         public string ValueType { get; set; }
         [Required]
         public string InputType { get; set; }
