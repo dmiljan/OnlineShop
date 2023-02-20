@@ -56,9 +56,8 @@ namespace OnlineShop.Controllers
             if (ModelState.IsValid)
             {
                 await _productTypeService.UpdateNameOfProductType(productType);
-                var _productType = _mapper.Map<ProductTypeResponseDto>(productType);
 
-                return Ok(_productType);
+                return Ok(_mapper.Map<ProductTypeResponseDto>(productType));
             }
             return BadRequest();
         }

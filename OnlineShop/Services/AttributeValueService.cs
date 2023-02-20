@@ -34,14 +34,14 @@ namespace OnlineShop.Services
         {
             return await _context.AttributeValue
                 .Where(x => x.Id == id)
-                .Include(a => a.Attribute)
+                .Include(x => x.Attribute)
                 .FirstOrDefaultAsync();
         }
 
         public async Task<List<AttributeValue>> GetAttributeValues()
         {
             return await _context.AttributeValue
-                .Include(a => a.Attribute)
+                .Include(x => x.Attribute)
                 .ToListAsync();
         }
 

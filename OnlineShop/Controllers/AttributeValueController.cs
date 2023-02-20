@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using OnlineShop.DTOs.Requests;
 using OnlineShop.DTOs.Responses;
-using OnlineShop.Helper;
 using OnlineShop.Interfaces;
 using OnlineShop.Models;
 
@@ -25,7 +24,6 @@ namespace OnlineShop.Controllers
         public async Task<IActionResult> Create(AttributeValueRequestDto attributeValueRequestDto)
         {
             var _attributeValue = _mapper.Map<AttributeValue>(attributeValueRequestDto);
-            _attributeValue.Value = StringHelper.ConvertToStringKey(_attributeValue.Label);
 
             await _attributeValueService.AddAttributeValue(_attributeValue);
 

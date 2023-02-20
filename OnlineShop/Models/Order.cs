@@ -7,7 +7,7 @@ namespace OnlineShop.Models
     {
         [Key]
         public int Id { get; set; }
-        public string UserId { get; set; } //string, no required (Identity)
+        public string UserId { get; set; } //string, no required
         [Required]
         public bool Processed { get; set; }
         [Required]

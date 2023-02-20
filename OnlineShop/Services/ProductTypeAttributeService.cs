@@ -16,10 +16,7 @@ namespace OnlineShop.Services
 
         public async Task<List<ProductTypeAttribute>> AddAtributesToProductType(List<ProductTypeAttribute> listProductTypeAttribute)
         {
-            foreach(var obj in listProductTypeAttribute)
-            {
-                await _context.ProductTypeAttribute.AddAsync(obj);
-            }
+            await _context.ProductTypeAttribute.AddRangeAsync(listProductTypeAttribute);
             await _context.SaveChangesAsync();
 
             return listProductTypeAttribute.ToList();
@@ -35,7 +32,7 @@ namespace OnlineShop.Services
         {
             var productTypeAttributes = await _context.ProductTypeAttribute
                 .Where(x => x.ProductTypeId == productTypeId)
-                .Include(a => a.Attribute)
+                .Include(x => x.Attribute)
                 .ToListAsync();
 
             return productTypeAttributes;

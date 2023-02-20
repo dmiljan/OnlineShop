@@ -29,10 +29,10 @@ namespace OnlineShop.Data
             var productType = new List<ProductType>()
             {
                 new ProductType() { Id = 1, Name = "Laptop" },
-                new ProductType() { Id = 2, Name = "Television" },
+                new ProductType() { Id = 2, Name = "TV" },
                 new ProductType() { Id = 3, Name = "Mobile phone" },
                 new ProductType() { Id = 4, Name = "Monitor" },
-                new ProductType() { Id = 5, Name = "Desktop computer" },
+                new ProductType() { Id = 5, Name = "Computer" },
                 new ProductType() { Id = 6, Name = "Fridge" },
                 new ProductType() { Id = 7, Name = "Washing machine" }
             };

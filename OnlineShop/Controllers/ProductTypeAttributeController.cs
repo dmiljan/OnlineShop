@@ -19,18 +19,24 @@ namespace OnlineShop.Controllers
             _mapper = mapper;
         }
 
-        //Add attributes to product type
+        /// <summary>
+        /// Add attributes to product type.
+        /// </summary>
         [HttpPost]
         public async Task<IActionResult> Create(List<ProductTypeAttribute> listProductTypeAttribute)
         {
             if (ModelState.IsValid)
             {
                 await _productTypeAttributeService.AddAtributesToProductType(listProductTypeAttribute);
-                return Ok(listProductTypeAttribute.ToList());
+
+                return Ok(listProductTypeAttribute);
             }
             return BadRequest();
         }
 
+        /// <summary>
+        /// Delete assigned attribute to product type.
+        /// </summary>
         [HttpDelete("{productTypeId}&{attributeId}")]
         public async Task<IActionResult> Delete(int productTypeId, int attributeId)
         {

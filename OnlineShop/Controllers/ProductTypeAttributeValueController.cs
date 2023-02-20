@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineShop.DTOs.Responses;
 using OnlineShop.Interfaces;
 using OnlineShop.Models;
-using OnlineShop.Services;
 
 namespace OnlineShop.Controllers
 {
@@ -21,7 +19,9 @@ namespace OnlineShop.Controllers
             _mapper = mapper;
         }
 
-        //Add attribute values to product type
+        /// <summary>
+        /// Add attribute values to product type.
+        /// </summary>
         [HttpPost]
         public async Task<IActionResult> Create(List<ProductTypeAttributeValue> listProductTypeAttributeValue)
         {
