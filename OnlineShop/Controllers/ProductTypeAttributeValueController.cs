@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using OnlineShop.DTOs.Responses;
 using OnlineShop.Interfaces;
 using OnlineShop.Models;
 
@@ -53,7 +52,7 @@ namespace OnlineShop.Controllers
         public async Task<IActionResult> GetAll(int productTypeId)
         {
             var ProductTypeAttributeValues = await _productTypeAttributeValueService.GetAllAttributeValuesForProductType(productTypeId);
-            return Ok(_mapper.Map<List<ProductTypeAttributeValueResponseDto>>(ProductTypeAttributeValues));
+            return Ok(ProductTypeAttributeValues);
         }
     }
 }

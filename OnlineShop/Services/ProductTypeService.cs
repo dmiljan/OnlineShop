@@ -31,18 +31,21 @@ namespace OnlineShop.Services
         public async Task<ProductType> GetProductTypeById(int id)
         {
             var productType = await _context.ProductType.FindAsync(id);
+
             return productType;
         }
 
         public async Task<List<ProductType>> GetProductTypes()
         {
             var productTypes = await _context.ProductType.ToListAsync();
+
             return productTypes;
         }
 
         public async Task UpdateNameOfProductType(ProductType productType)
         {
             var existingProductType = await _context.ProductType.FindAsync(productType.Id);
+
             if(existingProductType != null)
             {
                 existingProductType.Name = productType.Name;

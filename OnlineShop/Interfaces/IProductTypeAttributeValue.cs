@@ -1,4 +1,5 @@
-﻿using OnlineShop.Models;
+﻿using OnlineShop.DTOs.Responses;
+using OnlineShop.Models;
 
 namespace OnlineShop.Interfaces
 {
@@ -7,6 +8,6 @@ namespace OnlineShop.Interfaces
         Task<List<ProductTypeAttributeValue>> AddAtributesValueToProductType(List<ProductTypeAttributeValue> productTypeAttributeValue);
         Task DeleteAssignedAttributeValueToProductType(ProductTypeAttributeValue productTypeAttributeValue);
         Task<ProductTypeAttributeValue> GetPoductTypeAttributeValueById(int productTypeId, int attributeValueId);
-        Task<List<ProductTypeAttributeValue>> GetAllAttributeValuesForProductType(int productTypeId);
+        Task<IEnumerable<AttributeValueForProductTypeResponseDto>> GetAllAttributeValuesForProductType(int productTypeId);
     }
 }

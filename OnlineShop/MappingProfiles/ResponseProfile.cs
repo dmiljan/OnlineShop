@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using OnlineShop.DTOs.Requests;
 using OnlineShop.DTOs.Responses;
-using OnlineShop.Helper;
+using OnlineShop.Helpers;
 using OnlineShop.Models;
 using Attribute = OnlineShop.Models.Attribute;
 
@@ -17,13 +17,16 @@ namespace OnlineShop.MappingProfiles
                 .ForMember(dest => dest.Value, opt => opt.MapFrom(src => StringHelper.ConvertToStringKey(src.Label)));
             CreateMap<AttributeValue, AttributeValueResponseDto>();
 
-            CreateMap<ProductTypeAttributeValue, ProductTypeAttributeValueResponseDto>()
-                .ForMember(dest => dest.Label, opt => opt.MapFrom(src => src.AttributeValue.Label))
-                .ForMember(dest => dest.AttributeName, opt => opt.MapFrom(src => src.AttributeValue.Attribute.Name));
-
             CreateMap<ProductType, ProductTypeResponseDto>();
 
             CreateMap<Attribute, AttributeResponseDto>();
+
+            CreateMap<ProductRequestDto, Product>();//ProductRequstDto has list of ProductAttributeRequestDto
+            CreateMap<ProductAttributeRequestDto, ProductAttribute>();
+
+            CreateMap<OrderRequestDto, Order>()
+                .ForMember(dest => dest.Processed, opt => opt.MapFrom(src => false))
+                .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => DateTime.UtcNow));
         }
     }
 }

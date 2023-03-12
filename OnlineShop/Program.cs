@@ -55,6 +55,10 @@ builder.Services.AddScoped<IAttribute, AttributeService>();
 builder.Services.AddScoped<IProductTypeAttribute, ProductTypeAttributeService>();
 builder.Services.AddScoped<IAttributeValue, AttributeValueService>();
 builder.Services.AddScoped<IProductTypeAttributeValue, ProductTypeAttributeValueService>();
+builder.Services.AddScoped<IProduct, ProductService>();
+builder.Services.AddScoped<IProductImage, ProductImageService>();
+builder.Services.AddScoped<IOrder, OrderService>();
+builder.Services.AddScoped<IUserProductSave, UserProductSaveService>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 //builder.Services.AddAutoMapper(typeof(Program));

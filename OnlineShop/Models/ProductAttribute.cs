@@ -9,7 +9,7 @@ namespace OnlineShop.Models
         public int Id { get; set; }
         public int ProductId { get; set; }
         public int AttributeId { get; set; }
-        public int? AttributeValueId { get; set; } //no required!
+        public int? AttributeValueId { get; set; } = null; //no required!
         public string Value { get; set; }
 
         [ForeignKey("ProductId")]

@@ -22,5 +22,7 @@ namespace OnlineShop.Models
 
         public ICollection<OrderProduct> Orders { get; set; } //many-to-many
         public ICollection<UserProductSave> Users { get; set; } //many-to-many
+        public virtual ICollection<ProductAttribute> ProductAttribute { get; set; }
+        public virtual ICollection<ProductImage> ProductImage { get; set; }
     }
 }

@@ -17,5 +17,6 @@ namespace OnlineShop.Models
         public Attribute Attribute { get; set; }
 
         public ICollection<ProductTypeAttributeValue> ProductTypes { get; set; } //many-to-many
+        public virtual ICollection<ProductAttribute> ProductAttribute { get; set; }
     }
 }

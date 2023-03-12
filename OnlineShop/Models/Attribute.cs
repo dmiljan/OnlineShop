@@ -14,5 +14,7 @@ namespace OnlineShop.Models
         public string InputType { get; set; }
 
         public ICollection<ProductTypeAttribute> ProductTypes { get; set; } //many-to-many
+        public virtual ICollection<AttributeValue> AttributeValue { get; set; }
+        public virtual ICollection<ProductAttribute> ProductAttribute { get; set; }
     }
 }

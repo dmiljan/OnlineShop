@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using OnlineShop.Data;
-using OnlineShop.DTOs.Requests;
 using OnlineShop.Interfaces;
 using OnlineShop.Models;
 

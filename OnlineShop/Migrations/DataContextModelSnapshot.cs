@@ -177,7 +177,7 @@ namespace OnlineShop.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Attribute");
+                    b.ToTable("Attribute", (string)null);
                 });
 
             modelBuilder.Entity("OnlineShop.Models.AttributeValue", b =>
@@ -203,7 +203,7 @@ namespace OnlineShop.Migrations
 
                     b.HasIndex("AttributeId");
 
-                    b.ToTable("AttributeValue");
+                    b.ToTable("AttributeValue", (string)null);
                 });
 
             modelBuilder.Entity("OnlineShop.Models.Order", b =>
@@ -238,7 +238,7 @@ namespace OnlineShop.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Order");
+                    b.ToTable("Order", (string)null);
                 });
 
             modelBuilder.Entity("OnlineShop.Models.OrderProduct", b =>
@@ -256,7 +256,7 @@ namespace OnlineShop.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderProduct");
+                    b.ToTable("OrderProduct", (string)null);
                 });
 
             modelBuilder.Entity("OnlineShop.Models.Product", b =>
@@ -288,7 +288,7 @@ namespace OnlineShop.Migrations
 
                     b.HasIndex("ProductTypeId");
 
-                    b.ToTable("Product");
+                    b.ToTable("Product", (string)null);
                 });
 
             modelBuilder.Entity("OnlineShop.Models.ProductAttribute", b =>
@@ -319,7 +319,7 @@ namespace OnlineShop.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductAttribute");
+                    b.ToTable("ProductAttribute", (string)null);
                 });
 
             modelBuilder.Entity("OnlineShop.Models.ProductImage", b =>
@@ -341,7 +341,7 @@ namespace OnlineShop.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductImage");
+                    b.ToTable("ProductImage", (string)null);
                 });
 
             modelBuilder.Entity("OnlineShop.Models.ProductType", b =>
@@ -358,7 +358,7 @@ namespace OnlineShop.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductType");
+                    b.ToTable("ProductType", (string)null);
                 });
 
             modelBuilder.Entity("OnlineShop.Models.ProductTypeAttribute", b =>
@@ -376,7 +376,7 @@ namespace OnlineShop.Migrations
 
                     b.HasIndex("AttributeId");
 
-                    b.ToTable("ProductTypeAttribute");
+                    b.ToTable("ProductTypeAttribute", (string)null);
                 });
 
             modelBuilder.Entity("OnlineShop.Models.ProductTypeAttributeValue", b =>
@@ -391,7 +391,7 @@ namespace OnlineShop.Migrations
 
                     b.HasIndex("AttributeValueId");
 
-                    b.ToTable("ProductTypeAttributeValue");
+                    b.ToTable("ProductTypeAttributeValue", (string)null);
                 });
 
             modelBuilder.Entity("OnlineShop.Models.User", b =>
@@ -479,7 +479,7 @@ namespace OnlineShop.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("UserProductSave");
+                    b.ToTable("UserProductSave", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

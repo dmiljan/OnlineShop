@@ -1,5 +1,4 @@
-﻿using OnlineShop.Models;
-using Attribute = OnlineShop.Models.Attribute;
+﻿using Attribute = OnlineShop.Models.Attribute;
 
 namespace OnlineShop.Interfaces
 {

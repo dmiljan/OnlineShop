@@ -24,8 +24,6 @@ namespace OnlineShop.Data
         public DbSet<ProductTypeAttributeValue> ProductTypeAttributeValue { get; set; } //ProductType-AttributeValue n:m
         public DbSet<ProductAttribute> ProductAttribute { get; set; }
 
-
-
         protected override void OnModelCreating(ModelBuilder modelBuilder) 
         {
             base.OnModelCreating(modelBuilder);

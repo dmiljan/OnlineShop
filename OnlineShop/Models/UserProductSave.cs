@@ -5,7 +5,7 @@ namespace OnlineShop.Models
     public class UserProductSave
     {
         [Required]
-        public string UserId { get; set; }  //string!
+        public string UserId { get; set; }  //string
         public int ProductId { get; set; }
 
         public User User { get; set; }
