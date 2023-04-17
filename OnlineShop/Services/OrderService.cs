@@ -92,7 +92,7 @@ namespace OnlineShop.Services
 
         public async Task<IEnumerable<OrderResponseDto>> GetOrders(GetAllOrderFilter filter = null, PaginationQuery paginationQuery = null)
         {
-            var orders = await _context.Order
+            var orders = _context.Order
                 .Select(x => new OrderResponseDto
                 {
                     Order = x,
@@ -110,20 +110,19 @@ namespace OnlineShop.Services
                         ProductType = y.Product.ProductType.Name,
                         Images = y.Product.ProductImage.Select(z => z.ImagePath)
                     })
-                })
-                .ToListAsync();
+                });
 
             if(paginationQuery == null)
             {
-                return orders;
+                return await orders.ToListAsync();
             }
 
             //Orders filtering
-            orders = AddFiltersOnQuery(filter, orders).ToList();
+            var result = await AddFiltersOnQuery(filter, orders).ToListAsync();
 
             var skip = (paginationQuery.PageNumber - 1) * paginationQuery.PageSize;
             
-            return orders
+            return result
                 .Skip(skip)
                 .Take(paginationQuery.PageSize);
         }
@@ -132,8 +131,9 @@ namespace OnlineShop.Services
         /// Order is created and field Processed is set on false.
         /// When an employee processes the order, field Processed will be set on true.
         /// </summary>
-        public async Task CompleteOrder(Order order)
+        public async Task CompleteOrder(int orderId)
         {
+            var order = await _context.Order.FindAsync(orderId);
             order.Processed = true;
 
             _context.Order.Update(order);
@@ -146,15 +146,19 @@ namespace OnlineShop.Services
             await _context.SaveChangesAsync();
         }
 
-        private static IEnumerable<OrderResponseDto> AddFiltersOnQuery(GetAllOrderFilter filter, IEnumerable<OrderResponseDto> orders)
+        private static IQueryable<OrderResponseDto> AddFiltersOnQuery(GetAllOrderFilter filter, IQueryable<OrderResponseDto> orders)
         {
             if (filter?.Processed != null)
             {
-                orders = orders.Where(x => x.Order.Processed == filter.Processed).ToList();
+                orders = orders.Where(x => x.Order.Processed == filter.Processed);
             }
-            if (filter?.TotalPriceFrom != 0 && filter?.TotalPriceTo != 0)
+            if (filter?.TotalPriceFrom != 0)
             {
-                orders = orders.Where(x => x.Order.TotalPrice >= filter.TotalPriceFrom && x.Order.TotalPrice <= filter.TotalPriceTo).ToList();
+                orders = orders.Where(x => x.Order.TotalPrice >= filter.TotalPriceFrom);
+            }
+            if (filter?.TotalPriceTo != 0)
+            {
+                orders = orders.Where(x => x.Order.TotalPrice <= filter.TotalPriceTo);
             }
             return orders;
         }

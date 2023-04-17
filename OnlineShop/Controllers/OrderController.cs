@@ -29,14 +29,14 @@ namespace OnlineShop.Controllers
             return Created(HttpContext.Request.Scheme + "://" + HttpContext.Request.Host + HttpContext.Request.Path + "/" + _order.Id, _order);
         }
 
-        [HttpPatch]
-        public async Task<IActionResult> CompleteOrder(Order order)
+        [HttpPatch("completeOrder/{orderId}")]
+        public async Task<IActionResult> CompleteOrder(int orderId)
         {
             if (ModelState.IsValid)
             {
-                await _orderService.CompleteOrder(order);
+                await _orderService.CompleteOrder(orderId);
 
-                return Ok(order);
+                return Ok();
             }                                                                                                                                                                                                                                                                                                                                                                                                                                            
 
             return BadRequest();

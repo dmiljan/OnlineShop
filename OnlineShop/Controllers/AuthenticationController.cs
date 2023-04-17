@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using OnlineShop.DTOs.Requests;
@@ -15,12 +16,14 @@ namespace OnlineShop.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
+        public IMapper _mapper;
         //private readonly JwtConfig _jwtConfig;
 
-        public AuthenticationController(UserManager<User> userManager, IConfiguration configuration)
+        public AuthenticationController(UserManager<User> userManager, IConfiguration configuration, IMapper mapper)
         {
             _userManager = userManager;
             _configuration = configuration;
+            _mapper = mapper;
             //_jwtConfig = jwtConfig;
         }
 
@@ -40,13 +43,7 @@ namespace OnlineShop.Controllers
                     });
                 }
 
-                var user = new User()
-                {
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    Email = model.Email,
-                    UserName = model.UserName
-                };
+                var user = _mapper.Map<User>(model);
 
                 var result = await _userManager.CreateAsync(user, model.Password);
 

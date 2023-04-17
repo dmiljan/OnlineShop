@@ -7,17 +7,17 @@ namespace OnlineShop.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SetupController : ControllerBase
+    public class UserController : ControllerBase
     {
 
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly ILogger<SetupController> _logger;
+        private readonly ILogger<UserController> _logger;
 
-        public SetupController(
+        public UserController(
             UserManager<User> userManager,
             RoleManager<IdentityRole> roleManager,
-            ILogger<SetupController> logger
+            ILogger<UserController> logger
             )
         {
             _userManager = userManager;
@@ -33,7 +33,7 @@ namespace OnlineShop.Controllers
         }
 
         [HttpPost("createRole")]
-        public async Task<IActionResult> CreateRole(String name)
+        public async Task<IActionResult> CreateRole(string name)
         {
             var roleExist = await _roleManager.RoleExistsAsync(name);
 

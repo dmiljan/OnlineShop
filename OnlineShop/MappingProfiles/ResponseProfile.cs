@@ -27,6 +27,8 @@ namespace OnlineShop.MappingProfiles
             CreateMap<OrderRequestDto, Order>()
                 .ForMember(dest => dest.Processed, opt => opt.MapFrom(src => false))
                 .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => DateTime.UtcNow));
+
+            CreateMap<RegisterRequestDto, User>();
         }
     }
 }

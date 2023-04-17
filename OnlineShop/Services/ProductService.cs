@@ -32,7 +32,7 @@ namespace OnlineShop.Services
 
         public async Task<IEnumerable<ProductResponseDto>> GetProducts(GetAllProductFilter filter = null, PaginationQuery paginationQuery = null)
         {
-            var products = await _context.Product
+            var products = _context.Product
                 .Select(x => new ProductResponseDto
                 {
                     Product = x,
@@ -46,21 +46,19 @@ namespace OnlineShop.Services
                         InputType = y.Attribute.InputType
                     }),
                     Images = x.ProductImage.Select(z => z.ImagePath)
-
-                })
-                .ToListAsync();
+                });
 
             if (paginationQuery == null)
             {
-                return products;
+                return await products.ToListAsync();
             }
 
             //products filtering
-            products = AddFiltersOnQuery(filter, products).ToList();
+            var result = await AddFiltersOnQuery(filter, products).ToListAsync();
 
             var skip = (paginationQuery.PageNumber - 1) * paginationQuery.PageSize;
             
-            return products
+            return result
                 .Skip(skip)
                 .Take(paginationQuery.PageSize);
         }
@@ -107,18 +105,21 @@ namespace OnlineShop.Services
                 _context.Product.Update(existingProduct);
                 await _context.SaveChangesAsync();
             }
-
         }
 
-        private static IEnumerable<ProductResponseDto> AddFiltersOnQuery(GetAllProductFilter filter, IEnumerable<ProductResponseDto> products)
+        private static IQueryable<ProductResponseDto> AddFiltersOnQuery(GetAllProductFilter filter, IQueryable<ProductResponseDto> products)
         {
             if (filter?.ProductTypeId != 0)
             {
-                products = products.Where(x => x.Product.ProductTypeId == filter.ProductTypeId).ToList();
+                products = products.Where(x => x.Product.ProductTypeId == filter.ProductTypeId);
             }
-            if(filter?.PriceFrom != 0 && filter?.PriceTo != 0)
+            if(filter?.PriceFrom != 0)
             {
-                products = products.Where(x => x.Product.Price >= filter.PriceFrom && x.Product.Price <= filter.PriceTo).ToList();
+                products = products.Where(x => x.Product.Price >= filter.PriceFrom);
+            }
+            if (filter?.PriceTo != 0)
+            {
+                products = products.Where(x => x.Product.Price <= filter.PriceTo);
             }
             return products;
         }
